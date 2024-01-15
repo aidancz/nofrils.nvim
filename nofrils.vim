@@ -3,17 +3,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let g:colors_name = "nofrils-dark"
-
-if !exists("g:nofrils_strbackgrounds")
-    let g:nofrils_strbackgrounds = 0
-endif
-if !exists("g:nofrils_heavycomments")
-    let g:nofrils_heavycomments = 0
-endif
-if !exists("g:nofrils_heavylinenumbers")
-    let g:nofrils_heavylinenumbers = 0
-endif
+let g:colors_name = "nofrils"
 
 set background=dark
 
@@ -123,61 +113,3 @@ hi SneakLabelMask   term=NONE cterm=NONE ctermfg=black ctermbg=195 gui=NONE guif
 hi SneakTarget      term=NONE cterm=NONE ctermfg=black ctermbg=195 gui=NONE guifg=NONE guibg=NONE
 hi SneakLabelTarget term=NONE cterm=NONE ctermfg=black ctermbg=183 gui=NONE guifg=NONE guibg=NONE
 hi SneakScope       term=NONE cterm=NONE ctermfg=black ctermbg=183 gui=NONE guifg=NONE guibg=NONE
-
-" Helper Functions
-function! NofrilsFocusComments()
-    hi Comment   term=NONE cterm=NONE ctermfg=255  ctermbg=235  gui=NONE guifg=NONE guibg=NONE
-    hi Normal    term=NONE cterm=NONE ctermfg=242  ctermbg=235  gui=NONE guifg=NONE guibg=NONE
-    hi LineNr    term=NONE cterm=NONE ctermfg=8    ctermbg=bg   gui=NONE guifg=NONE guibg=NONE
-    hi Character term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-    hi String    term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-
-    if g:nofrils_heavycomments
-        hi Comment term=NONE cterm=NONE ctermfg=135 ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-    end
-endfunction
-
-function! NofrilsFocusCode()
-    hi Comment   term=NONE cterm=NONE ctermfg=242  ctermbg=235  gui=NONE guifg=NONE guibg=NONE
-    hi Normal    term=NONE cterm=NONE ctermfg=255  ctermbg=235  gui=NONE guifg=NONE guibg=NONE
-    hi LineNr    term=NONE cterm=NONE ctermfg=8    ctermbg=bg   gui=NONE guifg=NONE guibg=NONE
-    hi Character term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-    hi String    term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-
-    if g:nofrils_strbackgrounds
-        hi Character term=NONE cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=NONE
-        hi String    term=NONE cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=NONE
-    end
-endfunction
-
-function! NofrilsNormal()
-    hi Comment   term=NONE cterm=NONE ctermfg=242  ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-    hi Normal    term=NONE cterm=NONE ctermfg=255  ctermbg=235  gui=NONE guifg=NONE guibg=NONE
-    hi LineNr    term=NONE cterm=NONE ctermfg=8    ctermbg=bg   gui=NONE guifg=NONE guibg=NONE
-    hi Character term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-    hi String    term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-
-    " Optional Syntax Features
-    if g:nofrils_strbackgrounds
-        hi Character term=NONE cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=NONE
-        hi String    term=NONE cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=NONE
-    end
-    if g:nofrils_heavycomments
-        hi Comment term=NONE cterm=NONE ctermfg=135 ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-    end
-    if g:nofrils_heavylinenumbers
-        hi LineNr term=NONE cterm=NONE ctermfg=135 ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-    end
-endfunction
-
-" Command mappings
-command! NofrilsDark :colo nofrils-dark
-command! NofrilsLight :colo nofrils-light
-command! NofrilsSepia :colo nofrils-sepia
-command! NofrilsAcme :colo nofrils-acme
-command! NofrilsFocusNormal :call NofrilsNormal()
-command! NofrilsFocusCode :call NofrilsFocusCode()
-command! NofrilsFocusComments :call NofrilsFocusComments()
-
-" Setup normal settings
-call NofrilsNormal()
