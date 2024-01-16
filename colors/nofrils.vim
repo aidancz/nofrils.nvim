@@ -1,5 +1,5 @@
 hi Normal           term=NONE cterm=NONE ctermfg=15   ctermbg=0    gui=NONE guifg=NONE guibg=NONE
-" "fg" and "bg" can be used after "hl-Normal"
+" 'fg' and 'bg' can be used after 'hl-Normal'
 
 hi Boolean          term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi Character        term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
