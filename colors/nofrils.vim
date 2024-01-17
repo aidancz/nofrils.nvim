@@ -1,5 +1,5 @@
 hi Normal           term=NONE cterm=NONE ctermfg=15   ctermbg=0    gui=NONE guifg=NONE guibg=NONE
-" 'fg' and 'bg' can be used after 'hl-Normal'
+" 'fg' and 'bg' can only be used after 'hl-Normal', eg: 'ctermfg=bg'
 
 hi Boolean          term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi Character        term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
@@ -32,7 +32,7 @@ hi Format           term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guif
 hi Function         term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi Identifier       term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi Ignore           term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-hi IncSearch        term=NONE cterm=NONE ctermfg=bg   ctermbg=fg   gui=NONE guifg=NONE guibg=NONE
+hi IncSearch        term=NONE cterm=NONE ctermfg=0    ctermbg=15   gui=NONE guifg=NONE guibg=NONE
 hi Include          term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi Keyword          term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi Label            term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
