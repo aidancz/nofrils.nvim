@@ -97,7 +97,7 @@ au BufEnter    * match Tab /\t/
 au InsertEnter * match Tab /\t/
 au InsertLeave * match Tab /\t/
 
-hi TrailingWhitespace ctermbg=1
+hi TrailingWhitespace ctermbg=3
 au BufEnter    * 2match TrailingWhitespace /\s\+$/
 au InsertEnter * 2match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * 2match TrailingWhitespace /\s\+$/
