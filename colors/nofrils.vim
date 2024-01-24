@@ -85,7 +85,7 @@ hi Type             term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guib
 hi Typedef          term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi Underlined       term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi VertSplit        term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
-hi Visual           term=NONE cterm=NONE ctermbg=8    ctermfg=15   gui=NONE guibg=NONE guifg=NONE
+hi Visual           term=NONE cterm=NONE ctermbg=8    ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi VisualNOS        term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi WarningMsg       term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi WildMenu         term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
