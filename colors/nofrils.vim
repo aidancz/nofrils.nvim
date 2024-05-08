@@ -27,7 +27,7 @@ hi ErrorMsg         term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guib
 hi Exception        term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi Float            term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi FoldColumn       term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
-hi Folded           term=NONE cterm=NONE ctermbg=8    ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
+hi Folded           term=NONE cterm=NONE ctermbg=NONE ctermfg=3    gui=NONE guibg=NONE guifg=NONE
 hi Format           term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi Function         term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
 hi Identifier       term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
