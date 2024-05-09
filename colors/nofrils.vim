@@ -4,7 +4,7 @@
 hi Normal           term=NONE cterm=NONE ctermbg=0    ctermfg=15   gui=NONE guibg=NONE guifg=NONE
 " 'bg' and 'fg' can only be used after 'hl-Normal', eg: 'ctermfg=bg'
 
-hi nofrils-default    term=NONE cterm=NONE ctermbg=0    ctermfg=15   gui=NONE guibg=NONE guifg=NONE
+" hi nofrils-default    term=NONE cterm=NONE ctermbg=0    ctermfg=15   gui=NONE guibg=NONE guifg=NONE
 hi nofrils-reverse    term=NONE cterm=NONE ctermbg=15   ctermfg=0    gui=NONE guibg=NONE guifg=NONE
 hi nofrils-shadow     term=NONE cterm=NONE ctermbg=NONE ctermfg=7    gui=NONE guibg=NONE guifg=NONE
 hi nofrils-highlight  term=NONE cterm=NONE ctermbg=8    ctermfg=NONE gui=NONE guibg=NONE guifg=NONE
@@ -179,4 +179,4 @@ hi! def link markdownH3Delimiter nofrils-level3
 hi! def link markdownH4Delimiter nofrils-level1
 hi! def link markdownH5Delimiter nofrils-level2
 hi! def link markdownH6Delimiter nofrils-level3
-hi! def link markdownBlockquote  nofrils-default
+hi! def link markdownBlockquote  Normal
