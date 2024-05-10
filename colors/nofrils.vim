@@ -165,6 +165,9 @@ au InsertEnter * 2match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * 2match TrailingWhitespace /\s\+$/
 " https://gist.github.com/pironim/3722006
 
+" hi! def link Test nofrils-red-bg
+" au CursorMoved,CursorMovedI * 3match Test /\s\+\%#\@<!$/
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 hi! def link markdownH1          nofrils-level1
