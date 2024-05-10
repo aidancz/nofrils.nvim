@@ -132,6 +132,7 @@ hi! def link Folded     nofrils-yellow
 hi! def link IncSearch  nofrils-reverse
 hi! def link LineNr     nofrils-shadow
 hi! def link PmenuSel   nofrils-highlight
+hi! def link SpecialKey nofrils-warning
 hi! def link StatusLine nofrils-highlight
 hi! def link Visual     nofrils-highlight
 
@@ -164,6 +165,7 @@ au BufEnter    * 2match TrailingWhitespace /\s\+$/
 au InsertEnter * 2match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * 2match TrailingWhitespace /\s\+$/
 " https://gist.github.com/pironim/3722006
+" https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 
 " hi! def link Test nofrils-red-bg
 " au CursorMoved,CursorMovedI * 3match Test /\s\+\%#\@<!$/
