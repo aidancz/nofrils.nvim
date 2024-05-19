@@ -123,6 +123,7 @@ hi WildMenu         term=NONE cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guib
 
 " }}}
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ builtin (:h highlight-groups)
 hi! def link Comment    nofrils-shadow
 hi! def link DiffAdd    nofrils-green
 hi! def link DiffChange nofrils-yellow
@@ -136,42 +137,26 @@ hi! def link SpecialKey nofrils-warning
 hi! def link StatusLine nofrils-highlight
 hi! def link Visual     nofrils-highlight
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:nofrils_status = 0
-function! NofrilsToggle()
-	if g:nofrils_status == 0
-		hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
-		hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
-		let g:nofrils_status = 1
-	else
-		hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
-		hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
-		let g:nofrils_status = 0
-	endif
-endfunction
-command! NofrilsToggle :call NofrilsToggle()
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ whitespace
+" https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+" https://gist.github.com/pironim/3722006
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" hi Tab ctermbg=8
-hi! def link Tab nofrils-highlight
 au BufEnter    * match Tab /\t/
 au InsertEnter * match Tab /\t/
 au InsertLeave * match Tab /\t/
+" hi Tab ctermbg=8
+hi! def link Tab nofrils-highlight
 
-" hi TrailingWhitespace ctermbg=3
-hi! def link TrailingWhitespace nofrils-warning
 au BufEnter    * 2match TrailingWhitespace /\s\+$/
 au InsertEnter * 2match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * 2match TrailingWhitespace /\s\+$/
-" https://gist.github.com/pironim/3722006
-" https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+" hi TrailingWhitespace ctermbg=3
+hi! def link TrailingWhitespace nofrils-warning
 
-" hi! def link Test nofrils-red-bg
 " au CursorMoved,CursorMovedI * 3match Test /\s\+\%#\@<!$/
+" hi! def link Test nofrils-red-bg
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ plugin
 hi! def link markdownH1          nofrils-level1
 hi! def link markdownH2          nofrils-level2
 hi! def link markdownH3          nofrils-level3
@@ -185,3 +170,18 @@ hi! def link markdownH4Delimiter nofrils-level1
 hi! def link markdownH5Delimiter nofrils-level2
 hi! def link markdownH6Delimiter nofrils-level3
 hi! def link markdownBlockquote  Normal
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions
+let g:nofrils_status = 0
+function! NofrilsToggle()
+	if g:nofrils_status == 0
+		hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
+		hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
+		let g:nofrils_status = 1
+	else
+		hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
+		hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
+		let g:nofrils_status = 0
+	endif
+endfunction
+command! NofrilsToggle :call NofrilsToggle()
