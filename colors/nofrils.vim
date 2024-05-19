@@ -172,16 +172,26 @@ hi! def link markdownH6Delimiter nofrils-level3
 hi! def link markdownBlockquote  Normal
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ functions
-let g:nofrils_status = 0
-function! NofrilsToggle()
-	if g:nofrils_status == 0
-		hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
-		hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
-		let g:nofrils_status = 1
-	else
-		hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
-		hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
-		let g:nofrils_status = 0
-	endif
+if exists("g:did_nofrils")
+	finish
+endif
+let g:did_nofrils = 1
+" prevent E127 when:
+" execute 'source ' . expand('<script>')
+
+function! Nofrils()
+	execute 'source ' . expand('<script>')
 endfunction
-command! NofrilsToggle :call NofrilsToggle()
+command! Nofrils :call Nofrils()
+
+function! NofrilsFocusComment()
+	hi Normal  term=NONE cterm=NONE ctermbg=0 ctermfg=7  gui=NONE guibg=NONE guifg=NONE
+	hi Comment term=NONE cterm=NONE ctermbg=0 ctermfg=15 gui=NONE guibg=NONE guifg=NONE
+endfunction
+command! NofrilsFocusComment :call NofrilsFocusComment()
+
+function! NofrilsFadeWhitespace()
+	hi! def link Tab Normal
+	hi! def link TrailingWhitespace Normal
+endfunction
+command! NofrilsFadeWhitespace :call NofrilsFadeWhitespace()
