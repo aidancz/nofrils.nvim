@@ -119,6 +119,8 @@ hi! def link PmenuSel    nofrils-highlight
 hi! def link SpecialKey  nofrils-warning
 hi! def link StatusLine  nofrils-highlight
 hi! def link Visual      nofrils-highlight
+hi! def link NonText     nofrils-shadow
+hi! def link Whitespace  nofrils-shadow
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ clear (:h group-name) {{{
 
@@ -171,15 +173,11 @@ hi! def link Comment    nofrils-shadow
 " https://gist.github.com/pironim/3722006
 
 au BufEnter    * match Tab /\t/
-au InsertEnter * match Tab /\t/
-au InsertLeave * match Tab /\t/
-" hi Tab ctermbg=8
 hi! def link Tab nofrils-highlight
 
 au BufEnter    * 2match TrailingWhitespace /\s\+$/
 au InsertEnter * 2match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * 2match TrailingWhitespace /\s\+$/
-" hi TrailingWhitespace ctermbg=3
 hi! def link TrailingWhitespace nofrils-warning
 
 " au CursorMoved,CursorMovedI * 3match Test /\s\+\%#\@<!$/
@@ -224,3 +222,9 @@ function! NofrilsFadeWhitespace()
 	hi! def link TrailingWhitespace nofrils-default
 endfunction
 command! NofrilsFadeWhitespace :call NofrilsFadeWhitespace()
+
+function! NofrilsPresentation()
+	set nonumber norelativenumber
+	hi! def link Visual nofrils-reverse
+endfunction
+command! NofrilsPresentation :call NofrilsPresentation()
