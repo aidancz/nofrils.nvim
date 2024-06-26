@@ -1,3 +1,5 @@
+set notermguicolors
+
 " term:		normal terminal
 " cterm:	color terminal
 
