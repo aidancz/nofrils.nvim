@@ -1,7 +1,8 @@
 --  option
 vim.opt.termguicolors = false
+vim.opt.background = 'dark'
 
---  highlight group def 0
+--  highlight group def
 vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 15})
 -- cterm	color terminal
 
@@ -21,16 +22,6 @@ vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3,      ctermfg = 0})
 vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4,      ctermfg = 0})
 vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5,      ctermfg = 0})
 vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6,      ctermfg = 0})
-
---  highlight group def 1
-vim.api.nvim_set_hl(0, 'nofrils-error',   {link = 'nofrils-red-bg'})
-vim.api.nvim_set_hl(0, 'nofrils-warning', {link = 'nofrils-yellow-bg'})
-vim.api.nvim_set_hl(0, 'nofrils-success', {link = 'nofrils-green-bg'})
-vim.api.nvim_set_hl(0, 'nofrils-level1',  {link = 'nofrils-red'})
-vim.api.nvim_set_hl(0, 'nofrils-level2',  {link = 'nofrils-green'})
-vim.api.nvim_set_hl(0, 'nofrils-level3',  {link = 'nofrils-blue'})
-vim.api.nvim_set_hl(0, 'nofrils-link',    {link = 'nofrils-cyan'})
-vim.api.nvim_set_hl(0, 'nofrils-button',  {link = 'nofrils-cyan'})
 
 --  clear (:h highlight-groups) (without Normal) {{{
 vim.api.nvim_set_hl(0, 'ColorColumn',    {})
@@ -158,61 +149,17 @@ vim.api.nvim_set_hl(0, 'LineNr',      {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'LineNrAbove', {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'LineNrBelow', {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'PmenuSel',    {link = 'nofrils-highlight'})
-vim.api.nvim_set_hl(0, 'SpecialKey',  {link = 'nofrils-warning'})
+vim.api.nvim_set_hl(0, 'SpecialKey',  {link = 'nofrils-yellow-bg'})
 vim.api.nvim_set_hl(0, 'StatusLine',  {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'Visual',      {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'NonText',     {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'Whitespace',  {link = 'nofrils-shadow'})
+vim.api.nvim_set_hl(0, 'WarningMsg',  {link = 'nofrils-yellow'})
+vim.api.nvim_set_hl(0, 'ErrorMsg',    {link = 'nofrils-red'})
 
 --  set   (:h group-name)
 vim.api.nvim_set_hl(0, 'Comment', {link = 'nofrils-shadow'})
-
---  whitespace
--- https://vim.fandom.com/wiki/Highlight_unwanted_spaces
--- https://gist.github.com/pironim/3722006
-
-local nofrils = vim.api.nvim_create_augroup('nofrils', {clear = true})
-
-vim.api.nvim_create_autocmd(
-	'BufEnter', {
-	group = nofrils,
-	pattern = {'*'},
-	callback = function()
-		nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
-	end,
-	})
-
-vim.api.nvim_create_autocmd(
-	'InsertEnter', {
-	group = nofrils,
-	pattern = {'*'},
-	callback = function()
-		vim.fn.matchdelete(nofrils_match_id_whitespace)
-		nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+\%#\@<!$]])
-	end,
-	})
-
-vim.api.nvim_create_autocmd(
-	'InsertLeave', {
-	group = nofrils,
-	pattern = {'*'},
-	callback = function()
-		vim.fn.matchdelete(nofrils_match_id_whitespace)
-		nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
-	end,
-	})
-
-vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-warning'})
-
--- vim.api.nvim_create_autocmd(
--- 	{'CursorMoved', 'CursorMovedI'}, {
--- 	group = nofrils,
--- 	pattern = {'*'},
--- 	callback = function()
--- 		vim.fn.matchadd('test', [[\s\+\%#\@<!$]])
--- 	end,
--- 	})
--- vim.api.nvim_set_hl(0, 'test', {link = 'nofrils-red-bg'})
+vim.api.nvim_set_hl(0, 'Error',   {link = 'nofrils-red-bg'})
 
 --  function
 function nofrils()
@@ -226,14 +173,69 @@ function nofrils_focus_comment()
 end
 vim.api.nvim_create_user_command('NofrilsFocusComment', nofrils_focus_comment, {})
 
-function nofrils_fade_whitespace()
-	vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-default'})
-end
-vim.api.nvim_create_user_command('NofrilsFadeWhitespace', nofrils_fade_whitespace, {})
-
 function nofrils_presentation()
 	vim.opt.number = false
 	vim.opt.relativenumber = false
 	vim.api.nvim_set_hl(0, 'Visual', {link = 'nofrils-reverse'})
 end
 vim.api.nvim_create_user_command('NofrilsPresentation', nofrils_presentation, {})
+
+--  whitespace
+-- https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+-- https://gist.github.com/pironim/3722006
+
+-- deprecate, use mini.trailspace instead {{{
+-- local nofrils_augroup = vim.api.nvim_create_augroup('nofrils', {clear = true})
+--
+-- vim.api.nvim_create_autocmd(
+-- 	{'VimEnter', 'WinEnter'}, {
+-- 	group = nofrils_augroup,
+-- 	pattern = {'*'},
+-- 	callback = function()
+-- 		if vim.w.nofrils_match_id_whitespace ~= nil then
+-- 			vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
+-- 		end
+-- 		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
+-- 	end,
+-- 	})
+--
+-- vim.api.nvim_create_autocmd(
+-- 	'InsertEnter', {
+-- 	group = nofrils_augroup,
+-- 	pattern = {'*'},
+-- 	callback = function()
+-- 		vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
+-- 		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+\%#\@<!$]])
+-- 	end,
+-- 	})
+--
+-- vim.api.nvim_create_autocmd(
+-- 	'InsertLeave', {
+-- 	group = nofrils_augroup,
+-- 	pattern = {'*'},
+-- 	callback = function()
+-- 		vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
+-- 		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
+-- 	end,
+-- 	})
+--
+-- vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-yellow-bg'})
+--
+-- function nofrils_fade_whitespace()
+-- 	vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-default'})
+-- end
+-- vim.api.nvim_create_user_command('NofrilsFadeWhitespace', nofrils_fade_whitespace, {})
+--
+-- }}}
+
+--  test
+
+-- vim.api.nvim_create_autocmd(
+-- 	{'CursorMoved', 'CursorMovedI'}, {
+-- 	group = nofrils,
+-- 	pattern = {'*'},
+-- 	callback = function()
+-- 		vim.fn.matchadd('test', [[\s\+\%#\@<!$]])
+-- 	end,
+-- 	})
+-- vim.api.nvim_set_hl(0, 'test', {link = 'nofrils-red-bg'})
