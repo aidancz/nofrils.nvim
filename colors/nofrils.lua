@@ -7,9 +7,13 @@ vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 15})
 -- cterm	color terminal
 
 vim.api.nvim_set_hl(0, 'nofrils-default',    {ctermbg = 0,      ctermfg = 15})
-vim.api.nvim_set_hl(0, 'nofrils-reverse',    {ctermbg = 15,     ctermfg = 0})
+
+vim.api.nvim_set_hl(0, 'nofrils-main',       {ctermbg = 'NONE', ctermfg = 15})
 vim.api.nvim_set_hl(0, 'nofrils-shadow',     {ctermbg = 'NONE', ctermfg = 7})
+vim.api.nvim_set_hl(0, 'nofrils-main-bg',    {ctermbg = 15,     ctermfg = 0})
+vim.api.nvim_set_hl(0, 'nofrils-shadow-bg',  {ctermbg = 7,      ctermfg = 0})
 vim.api.nvim_set_hl(0, 'nofrils-highlight',  {ctermbg = 8,      ctermfg = 'NONE'})
+
 vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 'NONE', ctermfg = 1})
 vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 'NONE', ctermfg = 2})
 vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 'NONE', ctermfg = 3})
@@ -143,7 +147,7 @@ vim.api.nvim_set_hl(0, 'SpecialKey',   {link = 'nofrils-yellow-bg'})
 vim.api.nvim_set_hl(0, 'NonText',      {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'Whitespace',   {link = 'nofrils-shadow'})
 
-vim.api.nvim_set_hl(0, 'TermCursor',   {link = 'nofrils-reverse'})
+vim.api.nvim_set_hl(0, 'TermCursor',   {link = 'nofrils-main-bg'})
 vim.api.nvim_set_hl(0, 'DiffAdd',      {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'DiffChange',   {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, 'DiffDelete',   {link = 'nofrils-red'})
@@ -160,6 +164,7 @@ vim.api.nvim_set_hl(0, 'WarningMsg',   {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, 'ErrorMsg',     {link = 'nofrils-red'})
 vim.api.nvim_set_hl(0, 'CursorLine',   {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'CursorColumn', {link = 'nofrils-highlight'})
+vim.api.nvim_set_hl(0, 'MatchParen',   {link = 'nofrils-shadow-bg'})
 
 --  set   (:h group-name)
 vim.api.nvim_set_hl(0, 'Comment', {link = 'nofrils-shadow'})
@@ -183,7 +188,7 @@ vim.api.nvim_create_user_command('NofrilsFocusComment', nofrils_focus_comment, {
 function nofrils_presentation()
 	vim.opt.number = false
 	vim.opt.relativenumber = false
-	vim.api.nvim_set_hl(0, 'Visual', {link = 'nofrils-reverse'})
+	vim.api.nvim_set_hl(0, 'Visual', {link = 'nofrils-main-bg'})
 end
 vim.api.nvim_create_user_command('NofrilsPresentation', nofrils_presentation, {})
 
