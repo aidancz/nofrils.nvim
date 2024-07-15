@@ -144,15 +144,14 @@ vim.api.nvim_set_hl(0, 'Removed',        {})
 
 --  set   (:h highlight-groups) (without Normal)
 vim.api.nvim_set_hl(0, 'SpecialKey',   {link = 'nofrils-yellow-bg'})
-vim.api.nvim_set_hl(0, 'NonText',      {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'Whitespace',   {link = 'nofrils-shadow'})
+vim.api.nvim_set_hl(0, 'NonText',      {link = 'nofrils-shadow'})
 
 vim.api.nvim_set_hl(0, 'TermCursor',   {link = 'nofrils-main-bg'})
 vim.api.nvim_set_hl(0, 'DiffAdd',      {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'DiffChange',   {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, 'DiffDelete',   {link = 'nofrils-red'})
 vim.api.nvim_set_hl(0, 'DiffText',     {link = 'nofrils-blue'})
-vim.api.nvim_set_hl(0, 'Folded',       {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, 'IncSearch',    {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'LineNr',       {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'LineNrAbove',  {link = 'nofrils-shadow'})
@@ -165,6 +164,8 @@ vim.api.nvim_set_hl(0, 'ErrorMsg',     {link = 'nofrils-red'})
 vim.api.nvim_set_hl(0, 'CursorLine',   {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'CursorColumn', {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'MatchParen',   {link = 'nofrils-shadow-bg'})
+
+-- vim.api.nvim_set_hl(0, 'Folded',       {link = 'nofrils-yellow'})
 
 --  set   (:h group-name)
 vim.api.nvim_set_hl(0, 'Comment', {link = 'nofrils-shadow'})
