@@ -152,7 +152,9 @@ vim.api.nvim_set_hl(0, 'DiffAdd',      {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'DiffChange',   {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, 'DiffDelete',   {link = 'nofrils-red'})
 vim.api.nvim_set_hl(0, 'DiffText',     {link = 'nofrils-blue'})
-vim.api.nvim_set_hl(0, 'IncSearch',    {link = 'nofrils-highlight'})
+vim.api.nvim_set_hl(0, 'Search',       {link = 'nofrils-highlight'})
+vim.api.nvim_set_hl(0, 'CurSearch',    {link = 'nofrils-highlight'})
+vim.api.nvim_set_hl(0, 'IncSearch',    {link = 'nofrils-main-bg'})
 vim.api.nvim_set_hl(0, 'LineNr',       {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'LineNrAbove',  {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'LineNrBelow',  {link = 'nofrils-shadow'})
@@ -197,57 +199,61 @@ vim.api.nvim_create_user_command('NofrilsPresentation', nofrils_presentation, {}
 -- https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 -- https://gist.github.com/pironim/3722006
 
--- -- {{{
--- local nofrils_augroup = vim.api.nvim_create_augroup('nofrils', {clear = true})
---
--- vim.api.nvim_create_autocmd(
--- 	{'VimEnter', 'WinEnter'}, {
--- 	group = nofrils_augroup,
--- 	pattern = {'*'},
--- 	callback = function()
--- 		if vim.w.nofrils_match_id_whitespace ~= nil then
--- 			vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
--- 		end
--- 		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
--- 	end,
--- 	})
---
--- vim.api.nvim_create_autocmd(
--- 	'InsertEnter', {
--- 	group = nofrils_augroup,
--- 	pattern = {'*'},
--- 	callback = function()
--- 		vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
--- 		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+\%#\@<!$]])
--- 	end,
--- 	})
---
--- vim.api.nvim_create_autocmd(
--- 	'InsertLeave', {
--- 	group = nofrils_augroup,
--- 	pattern = {'*'},
--- 	callback = function()
--- 		vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
--- 		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
--- 	end,
--- 	})
---
--- vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-yellow-bg'})
---
--- function nofrils_fade_whitespace()
--- 	vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-default'})
--- end
--- vim.api.nvim_create_user_command('NofrilsFadeWhitespace', nofrils_fade_whitespace, {})
--- -- }}}
+--[=[
+-- {{{
+local nofrils_augroup = vim.api.nvim_create_augroup('nofrils', {clear = true})
+
+vim.api.nvim_create_autocmd(
+	{'VimEnter', 'WinEnter'}, {
+	group = nofrils_augroup,
+	pattern = {'*'},
+	callback = function()
+		if vim.w.nofrils_match_id_whitespace ~= nil then
+			vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
+		end
+		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
+	end,
+	})
+
+vim.api.nvim_create_autocmd(
+	'InsertEnter', {
+	group = nofrils_augroup,
+	pattern = {'*'},
+	callback = function()
+		vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
+		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+\%#\@<!$]])
+	end,
+	})
+
+vim.api.nvim_create_autocmd(
+	'InsertLeave', {
+	group = nofrils_augroup,
+	pattern = {'*'},
+	callback = function()
+		vim.fn.matchdelete(vim.w.nofrils_match_id_whitespace)
+		vim.w.nofrils_match_id_whitespace = vim.fn.matchadd('trail', [[\s\+$]])
+	end,
+	})
+
+vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-yellow-bg'})
+
+function nofrils_fade_whitespace()
+	vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-default'})
+end
+vim.api.nvim_create_user_command('NofrilsFadeWhitespace', nofrils_fade_whitespace, {})
+-- }}}
+--]=]
 
 --  test
 
--- vim.api.nvim_create_autocmd(
--- 	{'CursorMoved', 'CursorMovedI'}, {
--- 	group = nofrils,
--- 	pattern = {'*'},
--- 	callback = function()
--- 		vim.fn.matchadd('test', [[\s\+\%#\@<!$]])
--- 	end,
--- 	})
--- vim.api.nvim_set_hl(0, 'test', {link = 'nofrils-red-bg'})
+--[=[
+vim.api.nvim_create_autocmd(
+	{'CursorMoved', 'CursorMovedI'}, {
+	group = nofrils,
+	pattern = {'*'},
+	callback = function()
+		vim.fn.matchadd('test', [[\s\+\%#\@<!$]])
+	end,
+	})
+vim.api.nvim_set_hl(0, 'test', {link = 'nofrils-red-bg'})
+--]=]
