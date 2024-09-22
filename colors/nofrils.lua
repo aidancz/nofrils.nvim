@@ -195,12 +195,108 @@ function nofrils_presentation()
 end
 vim.api.nvim_create_user_command('NofrilsPresentation', nofrils_presentation, {})
 
---  whitespace
+--  trailspace
 -- https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 -- https://gist.github.com/pironim/3722006
+-- https://github.com/echasnovski/mini.trailspace/blob/main/lua/mini/trailspace.lua
 
---[=[
+-- comment with --[=[ and --]=]
+
 -- {{{
+local nofrilstrsp = {}
+local h = {}
+
+nofrilstrsp.setup = function(userconfig)
+	nofrilstrsp.config = h.setup_config(nofrilstrsp.config, userconfig)
+	nofrilstrsp.create_autocommands()
+end
+
+nofrilstrsp.config = {
+	only_in_normal_buffers = true,
+}
+
+h.setup_config = function(defaultconfig, userconfig)
+	vim.validate({userconfig             = {userconfig,                        'table', true}})
+	-- vim.validate({only_in_normal_buffers = {userconfig.only_in_normal_buffers, 'boolean'}})
+	mergeconfig = vim.tbl_deep_extend('force', defaultconfig, userconfig or {})
+	return mergeconfig
+end
+
+h.get_config = function(config)
+	return vim.tbl_deep_extend('force', nofrilstrsp.config, vim.b.nofrilstrsp_config or {}, config or {})
+end
+
+nofrilstrsp.create_autocommands = function()
+	local gr = vim.api.nvim_create_augroup('nofrilstrsp', {clear = true})
+	local au = function(event, pattern, callback)
+		vim.api.nvim_create_autocmd(
+			event,
+			{
+				group = gr,
+				pattern = pattern,
+				callback = callback,
+			}
+		)
+	end
+
+	au('ColorScheme', '*', nofrilstrsp.create_default_hl)
+
+	au({'WinEnter', 'BufEnter'}, '*',
+		function()
+			local a = h.get_config().only_in_normal_buffers
+			local b = h.is_buffer_normal()
+			if (not a) or (a and b) then
+				nofrilstrsp.highlight()
+			end
+		end)
+
+	au({'WinLeave', 'BufLeave'}, '*', nofrilstrsp.unhighlight)
+
+	au('InsertEnter', '*', nofrilstrsp.highlight_insert)
+
+	au('InsertLeave', '*', nofrilstrsp.highlight)
+
+	if h.get_config().only_in_normal_buffers then
+		au('OptionSet', 'buftype',
+			function()
+				if vim.v.option_new == '' then
+					nofrilstrsp.highlight()
+				else
+					nofrilstrsp.unhighlight()
+				end
+			end)
+	end
+end
+
+nofrilstrsp.create_default_hl = function()
+	vim.api.nvim_set_hl(0, 'nofrilstrsp', {default = true, link = 'nofrils-red'})
+end
+
+nofrilstrsp.highlight = function()
+	nofrilstrsp.unhighlight()
+	vim.b.nofrilsmatchid = vim.fn.matchadd('nofrilstrsp', [[\s\+$]])
+end
+
+nofrilstrsp.highlight_insert = function()
+	nofrilstrsp.unhighlight()
+	vim.b.nofrilsmatchid = vim.fn.matchadd('nofrilstrsp', [[\s\+\%#\@<!$]])
+end
+
+nofrilstrsp.unhighlight = function()
+	pcall(vim.fn.matchdelete, vim.b.nofrilsmatchid)
+	-- use `pcall` because there is an error if match id is not present
+end
+
+h.is_buffer_normal = function(buf_id) return vim.bo[buf_id or 0].buftype == '' end
+
+
+
+nofrilstrsp.setup()
+
+-- }}}
+
+-- {{{
+--[=[
 local nofrils_augroup = vim.api.nvim_create_augroup('nofrils', {clear = true})
 
 vim.api.nvim_create_autocmd(
@@ -241,8 +337,8 @@ function nofrils_fade_whitespace()
 	vim.api.nvim_set_hl(0, 'trail', {link = 'nofrils-default'})
 end
 vim.api.nvim_create_user_command('NofrilsFadeWhitespace', nofrils_fade_whitespace, {})
--- }}}
 --]=]
+-- }}}
 
 --  test
 
