@@ -147,6 +147,7 @@ vim.api.nvim_set_hl(0, 'SpecialKey',   {link = 'nofrils-yellow-bg'})
 vim.api.nvim_set_hl(0, 'Whitespace',   {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'NonText',      {link = 'nofrils-shadow'})
 
+vim.api.nvim_set_hl(0, 'Cursor',       {link = 'nofrils-main-bg'})
 vim.api.nvim_set_hl(0, 'TermCursor',   {link = 'nofrils-main-bg'})
 vim.api.nvim_set_hl(0, 'DiffAdd',      {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'DiffChange',   {link = 'nofrils-yellow'})
