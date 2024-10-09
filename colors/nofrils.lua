@@ -1,31 +1,57 @@
 --  option
-vim.opt.termguicolors = false
 vim.opt.background = 'dark'
 
+--  xresources colors for `termguicolors` {{{
+-- https://github.com/nekonako/xresources-nvim/blob/master/lua/xresources.lua
+local function get_xresources_color (c)
+	local command = io.popen('xrdb -query | grep ' .. c .. ' -m 1 | cut -f 2')
+	local color = command:read("*l")
+	return color
+end
+local x = {
+	fg  = get_xresources_color('foreground');
+	bg  = get_xresources_color('background');
+	c0  = get_xresources_color('color0');
+	c1  = get_xresources_color('color1');
+	c2  = get_xresources_color('color2');
+	c3  = get_xresources_color('color3');
+	c4  = get_xresources_color('color4');
+	c5  = get_xresources_color('color5'),
+	c6  = get_xresources_color('color6');
+	c7  = get_xresources_color('color7');
+	c8  = get_xresources_color('color8');
+	c9  = get_xresources_color('color9');
+	c10 = get_xresources_color('color10');
+	c11 = get_xresources_color('color11');
+	c12 = get_xresources_color('color12');
+	c13 = get_xresources_color('color13');
+	c14 = get_xresources_color('color14');
+	c15 = get_xresources_color('color15');
+}
+-- }}}
+
 --  highlight group def
-vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 15})
+vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 15, bg = x.c0, fg = x.c15})
 -- cterm	color terminal
 
-vim.api.nvim_set_hl(0, 'nofrils-default',    {ctermbg = 0,      ctermfg = 15})
-
-vim.api.nvim_set_hl(0, 'nofrils-main',       {ctermbg = 'NONE', ctermfg = 15})
-vim.api.nvim_set_hl(0, 'nofrils-shadow',     {ctermbg = 'NONE', ctermfg = 7})
-vim.api.nvim_set_hl(0, 'nofrils-main-bg',    {ctermbg = 15,     ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-shadow-bg',  {ctermbg = 7,      ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-highlight',  {ctermbg = 8,      ctermfg = 'NONE'})
-
-vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 'NONE', ctermfg = 1})
-vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 'NONE', ctermfg = 2})
-vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 'NONE', ctermfg = 3})
-vim.api.nvim_set_hl(0, 'nofrils-blue',       {ctermbg = 'NONE', ctermfg = 4})
-vim.api.nvim_set_hl(0, 'nofrils-magenta',    {ctermbg = 'NONE', ctermfg = 5})
-vim.api.nvim_set_hl(0, 'nofrils-cyan',       {ctermbg = 'NONE', ctermfg = 6})
-vim.api.nvim_set_hl(0, 'nofrils-red-bg',     {ctermbg = 1,      ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-green-bg',   {ctermbg = 2,      ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3,      ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4,      ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5,      ctermfg = 0})
-vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6,      ctermfg = 0})
+vim.api.nvim_set_hl(0, 'nofrils-default',    {ctermbg = 0,      ctermfg = 15,     bg = x.c0,   fg = x.c15})
+vim.api.nvim_set_hl(0, 'nofrils-main',       {ctermbg = 'NONE', ctermfg = 15,     bg = 'NONE', fg = x.c15})
+vim.api.nvim_set_hl(0, 'nofrils-shadow',     {ctermbg = 'NONE', ctermfg = 7,      bg = 'NONE', fg = x.c7})
+vim.api.nvim_set_hl(0, 'nofrils-main-bg',    {ctermbg = 15,     ctermfg = 0,      bg = x.c15,  fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-shadow-bg',  {ctermbg = 7,      ctermfg = 0,      bg = x.c7,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-highlight',  {ctermbg = 8,      ctermfg = 'NONE', bg = x.c8,   fg = 'NONE'})
+vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 'NONE', ctermfg = 1,      bg = 'NONE', fg = x.c1})
+vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 'NONE', ctermfg = 2,      bg = 'NONE', fg = x.c2})
+vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 'NONE', ctermfg = 3,      bg = 'NONE', fg = x.c3})
+vim.api.nvim_set_hl(0, 'nofrils-blue',       {ctermbg = 'NONE', ctermfg = 4,      bg = 'NONE', fg = x.c4})
+vim.api.nvim_set_hl(0, 'nofrils-magenta',    {ctermbg = 'NONE', ctermfg = 5,      bg = 'NONE', fg = x.c5})
+vim.api.nvim_set_hl(0, 'nofrils-cyan',       {ctermbg = 'NONE', ctermfg = 6,      bg = 'NONE', fg = x.c6})
+vim.api.nvim_set_hl(0, 'nofrils-red-bg',     {ctermbg = 1,      ctermfg = 0,      bg = x.c1,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-green-bg',   {ctermbg = 2,      ctermfg = 0,      bg = x.c2,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3,      ctermfg = 0,      bg = x.c3,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4,      ctermfg = 0,      bg = x.c4,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5,      ctermfg = 0,      bg = x.c5,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6,      ctermfg = 0,      bg = x.c6,   fg = x.c0})
 
 --  clear (:h highlight-groups) (without Normal) {{{
 vim.api.nvim_set_hl(0, 'ColorColumn',    {})
@@ -99,7 +125,7 @@ vim.api.nvim_set_hl(0, 'Whitespace',     {})
 vim.api.nvim_set_hl(0, 'WildMenu',       {})
 vim.api.nvim_set_hl(0, 'WinBar',         {})
 vim.api.nvim_set_hl(0, 'WinBarNC',       {})
---- }}}
+-- }}}
 
 --  clear (:h group-name) {{{
 vim.api.nvim_set_hl(0, 'Comment',        {})
@@ -140,9 +166,105 @@ vim.api.nvim_set_hl(0, 'Todo',           {})
 vim.api.nvim_set_hl(0, 'Added',          {})
 vim.api.nvim_set_hl(0, 'Changed',        {})
 vim.api.nvim_set_hl(0, 'Removed',        {})
---- }}}
+-- }}}
 
---  set   (:h highlight-groups) (without Normal)
+--  clear (:h expr-highlight) {{{
+-- }}}
+
+--  clear (:h treesitter-highlight-groups) {{{
+vim.api.nvim_set_hl(0, '@variable',                    {})
+vim.api.nvim_set_hl(0, '@variable.builtin',            {})
+vim.api.nvim_set_hl(0, '@variable.parameter',          {})
+vim.api.nvim_set_hl(0, '@variable.parameter.builtin',  {})
+vim.api.nvim_set_hl(0, '@variable.member',             {})
+vim.api.nvim_set_hl(0, '@constant',                    {})
+vim.api.nvim_set_hl(0, '@constant.builtin',            {})
+vim.api.nvim_set_hl(0, '@constant.macro',              {})
+vim.api.nvim_set_hl(0, '@module',                      {})
+vim.api.nvim_set_hl(0, '@module.builtin',              {})
+vim.api.nvim_set_hl(0, '@label',                       {})
+vim.api.nvim_set_hl(0, '@string',                      {})
+vim.api.nvim_set_hl(0, '@string.documentation',        {})
+vim.api.nvim_set_hl(0, '@string.regexp',               {})
+vim.api.nvim_set_hl(0, '@string.escape',               {})
+vim.api.nvim_set_hl(0, '@string.special',              {})
+vim.api.nvim_set_hl(0, '@string.special.symbol',       {})
+vim.api.nvim_set_hl(0, '@string.special.path',         {})
+vim.api.nvim_set_hl(0, '@string.special.url',          {})
+vim.api.nvim_set_hl(0, '@character',                   {})
+vim.api.nvim_set_hl(0, '@character.special',           {})
+vim.api.nvim_set_hl(0, '@boolean',                     {})
+vim.api.nvim_set_hl(0, '@number',                      {})
+vim.api.nvim_set_hl(0, '@number.float',                {})
+vim.api.nvim_set_hl(0, '@type',                        {})
+vim.api.nvim_set_hl(0, '@type.builtin',                {})
+vim.api.nvim_set_hl(0, '@type.definition',             {})
+vim.api.nvim_set_hl(0, '@attribute',                   {})
+vim.api.nvim_set_hl(0, '@attribute.builtin',           {})
+vim.api.nvim_set_hl(0, '@property',                    {})
+vim.api.nvim_set_hl(0, '@function',                    {})
+vim.api.nvim_set_hl(0, '@function.builtin',            {})
+vim.api.nvim_set_hl(0, '@function.call',               {})
+vim.api.nvim_set_hl(0, '@function.macro',              {})
+vim.api.nvim_set_hl(0, '@function.method',             {})
+vim.api.nvim_set_hl(0, '@function.method.call',        {})
+vim.api.nvim_set_hl(0, '@constructor',                 {})
+vim.api.nvim_set_hl(0, '@operator',                    {})
+vim.api.nvim_set_hl(0, '@keyword',                     {})
+vim.api.nvim_set_hl(0, '@keyword.coroutine',           {})
+vim.api.nvim_set_hl(0, '@keyword.function',            {})
+vim.api.nvim_set_hl(0, '@keyword.operator',            {})
+vim.api.nvim_set_hl(0, '@keyword.import',              {})
+vim.api.nvim_set_hl(0, '@keyword.type',                {})
+vim.api.nvim_set_hl(0, '@keyword.modifier',            {})
+vim.api.nvim_set_hl(0, '@keyword.repeat',              {})
+vim.api.nvim_set_hl(0, '@keyword.return',              {})
+vim.api.nvim_set_hl(0, '@keyword.debug',               {})
+vim.api.nvim_set_hl(0, '@keyword.exception',           {})
+vim.api.nvim_set_hl(0, '@keyword.conditional',         {})
+vim.api.nvim_set_hl(0, '@keyword.conditional.ternary', {})
+vim.api.nvim_set_hl(0, '@keyword.directive',           {})
+vim.api.nvim_set_hl(0, '@keyword.directive.define',    {})
+vim.api.nvim_set_hl(0, '@punctuation.delimiter',       {})
+vim.api.nvim_set_hl(0, '@punctuation.bracket',         {})
+vim.api.nvim_set_hl(0, '@punctuation.special',         {})
+vim.api.nvim_set_hl(0, '@comment',                     {})
+vim.api.nvim_set_hl(0, '@comment.documentation',       {})
+vim.api.nvim_set_hl(0, '@comment.error',               {})
+vim.api.nvim_set_hl(0, '@comment.warning',             {})
+vim.api.nvim_set_hl(0, '@comment.todo',                {})
+vim.api.nvim_set_hl(0, '@comment.note',                {})
+vim.api.nvim_set_hl(0, '@markup.strong',               {})
+vim.api.nvim_set_hl(0, '@markup.italic',               {})
+vim.api.nvim_set_hl(0, '@markup.strikethrough',        {})
+vim.api.nvim_set_hl(0, '@markup.underline',            {})
+vim.api.nvim_set_hl(0, '@markup.heading',              {})
+vim.api.nvim_set_hl(0, '@markup.heading.1',            {})
+vim.api.nvim_set_hl(0, '@markup.heading.2',            {})
+vim.api.nvim_set_hl(0, '@markup.heading.3',            {})
+vim.api.nvim_set_hl(0, '@markup.heading.4',            {})
+vim.api.nvim_set_hl(0, '@markup.heading.5',            {})
+vim.api.nvim_set_hl(0, '@markup.heading.6',            {})
+vim.api.nvim_set_hl(0, '@markup.quote',                {})
+vim.api.nvim_set_hl(0, '@markup.math',                 {})
+vim.api.nvim_set_hl(0, '@markup.link',                 {})
+vim.api.nvim_set_hl(0, '@markup.link.label',           {})
+vim.api.nvim_set_hl(0, '@markup.link.url',             {})
+vim.api.nvim_set_hl(0, '@markup.raw',                  {})
+vim.api.nvim_set_hl(0, '@markup.raw.block',            {})
+vim.api.nvim_set_hl(0, '@markup.list',                 {})
+vim.api.nvim_set_hl(0, '@markup.list.checked',         {})
+vim.api.nvim_set_hl(0, '@markup.list.unchecked',       {})
+vim.api.nvim_set_hl(0, '@diff.plus',                   {})
+vim.api.nvim_set_hl(0, '@diff.minus',                  {})
+vim.api.nvim_set_hl(0, '@diff.delta',                  {})
+vim.api.nvim_set_hl(0, '@tag',                         {})
+vim.api.nvim_set_hl(0, '@tag.builtin',                 {})
+vim.api.nvim_set_hl(0, '@tag.attribute',               {})
+vim.api.nvim_set_hl(0, '@tag.delimiter',               {})
+-- }}}
+
+--  set   (:h highlight-groups) (without Normal) {{{
 vim.api.nvim_set_hl(0, 'SpecialKey',   {link = 'nofrils-yellow-bg'})
 vim.api.nvim_set_hl(0, 'Whitespace',   {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'NonText',      {link = 'nofrils-shadow'})
@@ -169,13 +291,19 @@ vim.api.nvim_set_hl(0, 'CursorColumn', {link = 'nofrils-highlight'})
 vim.api.nvim_set_hl(0, 'MatchParen',   {link = 'nofrils-shadow-bg'})
 
 -- vim.api.nvim_set_hl(0, 'Folded',       {link = 'nofrils-yellow'})
+-- }}}
 
---  set   (:h group-name)
+--  set   (:h group-name) {{{
 vim.api.nvim_set_hl(0, 'Comment', {link = 'nofrils-shadow'})
 vim.api.nvim_set_hl(0, 'Error',   {link = 'nofrils-red-bg'})
 vim.api.nvim_set_hl(0, 'Added',   {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'Changed', {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, 'Removed', {link = 'nofrils-red'})
+-- }}}
+
+--  set   (:h treesitter-highlight-groups) {{{
+vim.api.nvim_set_hl(0, "@comment", {link = "Comment"})
+-- }}}
 
 --  function
 function nofrils()
@@ -203,7 +331,7 @@ vim.api.nvim_create_user_command('NofrilsPresentation', nofrils_presentation, {}
 
 -- comment with --[=[ and --]=]
 
--- {{{
+-- `listchar` method {{{
 local nofrilswhsp = {}
 local h = {}
 
@@ -308,7 +436,7 @@ nofrilswhsp.setup({})
 
 -- }}}
 
--- {{{
+-- `matchadd` method {{{
 --[=[
 local nofrils_augroup = vim.api.nvim_create_augroup('nofrils', {clear = true})
 
@@ -353,8 +481,7 @@ vim.api.nvim_create_user_command('NofrilsFadeWhitespace', nofrils_fade_whitespac
 --]=]
 -- }}}
 
---  test
-
+-- test regexp {{{
 --[=[
 vim.api.nvim_create_autocmd(
 	{'CursorMoved', 'CursorMovedI'}, {
@@ -366,3 +493,4 @@ vim.api.nvim_create_autocmd(
 	})
 vim.api.nvim_set_hl(0, 'test', {link = 'nofrils-red-bg'})
 --]=]
+-- }}}
