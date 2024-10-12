@@ -302,7 +302,10 @@ vim.api.nvim_set_hl(0, 'Removed', {link = 'nofrils-red'})
 -- }}}
 
 --  set   (:h treesitter-highlight-groups) {{{
-vim.api.nvim_set_hl(0, "@comment", {link = "Comment"})
+vim.api.nvim_set_hl(0, '@comment',    {link = 'Comment'})
+vim.api.nvim_set_hl(0, '@diff.plus',  {link = 'Added'})
+vim.api.nvim_set_hl(0, '@diff.minus', {link = 'Removed'})
+vim.api.nvim_set_hl(0, '@diff.delta', {link = 'Changed'})
 -- }}}
 
 --  function
@@ -377,7 +380,6 @@ nofrilswhsp.create_autocommands = function()
 			local a = h.get_config().only_in_normal_buffers
 			local b = h.is_buffer_normal()
 			if (not a) or (a and b) then
-				nofrilswhsp.listchars()
 				nofrilswhsp.highlight()
 			end
 		end)
@@ -402,15 +404,6 @@ end
 
 nofrilswhsp.create_default_hl = function()
 	vim.api.nvim_set_hl(0, 'nofrilswhsp', {default = true, link = 'nofrils-red'})
-end
-
-nofrilswhsp.listchars = function()
-	vim.opt.list = true
-	vim.opt.listchars = ""
-	vim.opt.listchars:append({tab            = "▒▒"})
-	vim.opt.listchars:append({multispace     = "░"})
-	vim.opt.listchars:append({lead           = "░"})
-	vim.opt.listchars:append({trail          = "░"})
 end
 
 nofrilswhsp.highlight = function()
