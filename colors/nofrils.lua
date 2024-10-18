@@ -302,10 +302,24 @@ vim.api.nvim_set_hl(0, 'Removed', {link = 'nofrils-red'})
 -- }}}
 
 --  set   (:h treesitter-highlight-groups) {{{
-vim.api.nvim_set_hl(0, '@comment',    {link = 'Comment'})
-vim.api.nvim_set_hl(0, '@diff.plus',  {link = 'Added'})
-vim.api.nvim_set_hl(0, '@diff.minus', {link = 'Removed'})
-vim.api.nvim_set_hl(0, '@diff.delta', {link = 'Changed'})
+vim.api.nvim_set_hl(0, '@comment',          {link = 'nofrils-shadow'})
+vim.api.nvim_set_hl(0, '@diff.delta',       {link = 'nofrils-yellow'})
+vim.api.nvim_set_hl(0, '@diff.minus',       {link = 'nofrils-red'})
+vim.api.nvim_set_hl(0, '@diff.plus',        {link = 'nofrils-green'})
+vim.api.nvim_set_hl(0, '@markup.heading.1', {link = 'nofrils-red'})
+vim.api.nvim_set_hl(0, '@markup.heading.2', {link = 'nofrils-green'})
+vim.api.nvim_set_hl(0, '@markup.heading.3', {link = 'nofrils-yellow'})
+vim.api.nvim_set_hl(0, '@markup.heading.4', {link = 'nofrils-blue'})
+vim.api.nvim_set_hl(0, '@markup.heading.5', {link = 'nofrils-magenta'})
+vim.api.nvim_set_hl(0, '@markup.heading.6', {link = 'nofrils-cyan'})
+vim.api.nvim_set_hl(0, '@markup.link',      {link = 'nofrils-cyan'})
+vim.api.nvim_set_hl(0, '@markup.raw',       {link = 'nofrils-highlight'})
+-- }}}
+
+--  set   (?) {{{
+vim.api.nvim_set_hl(0, 'manBold',      {link = 'nofrils-yellow'})
+vim.api.nvim_set_hl(0, 'manItalic',    {link = 'nofrils-highlight'})
+vim.api.nvim_set_hl(0, 'manUnderline', {link = 'nofrils-cyan'})
 -- }}}
 
 --  function
