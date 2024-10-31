@@ -27,31 +27,34 @@ local x = {
 	c13 = get_xresources_color('color13');
 	c14 = get_xresources_color('color14');
 	c15 = get_xresources_color('color15');
+
+	black_alt = get_xresources_color('color_black_alt');
+	white_alt = get_xresources_color('color_white_alt');
 }
 -- }}}
 
 --  highlight group def
-vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 15, bg = x.c0, fg = x.c15})
+vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 7, bg = x.c0, fg = x.c7})
 -- cterm	color terminal
 
-vim.api.nvim_set_hl(0, 'nofrils-default',    {ctermbg = 0,      ctermfg = 15,     bg = x.c0,   fg = x.c15})
-vim.api.nvim_set_hl(0, 'nofrils-main',       {ctermbg = 'NONE', ctermfg = 15,     bg = 'NONE', fg = x.c15})
-vim.api.nvim_set_hl(0, 'nofrils-shadow',     {ctermbg = 'NONE', ctermfg = 7,      bg = 'NONE', fg = x.c7})
-vim.api.nvim_set_hl(0, 'nofrils-main-bg',    {ctermbg = 15,     ctermfg = 0,      bg = x.c15,  fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-shadow-bg',  {ctermbg = 7,      ctermfg = 0,      bg = x.c7,   fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-highlight',  {ctermbg = 8,      ctermfg = 'NONE', bg = x.c8,   fg = 'NONE'})
-vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 'NONE', ctermfg = 1,      bg = 'NONE', fg = x.c1})
-vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 'NONE', ctermfg = 2,      bg = 'NONE', fg = x.c2})
-vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 'NONE', ctermfg = 3,      bg = 'NONE', fg = x.c3})
-vim.api.nvim_set_hl(0, 'nofrils-blue',       {ctermbg = 'NONE', ctermfg = 4,      bg = 'NONE', fg = x.c4})
-vim.api.nvim_set_hl(0, 'nofrils-magenta',    {ctermbg = 'NONE', ctermfg = 5,      bg = 'NONE', fg = x.c5})
-vim.api.nvim_set_hl(0, 'nofrils-cyan',       {ctermbg = 'NONE', ctermfg = 6,      bg = 'NONE', fg = x.c6})
-vim.api.nvim_set_hl(0, 'nofrils-red-bg',     {ctermbg = 1,      ctermfg = 0,      bg = x.c1,   fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-green-bg',   {ctermbg = 2,      ctermfg = 0,      bg = x.c2,   fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3,      ctermfg = 0,      bg = x.c3,   fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4,      ctermfg = 0,      bg = x.c4,   fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5,      ctermfg = 0,      bg = x.c5,   fg = x.c0})
-vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6,      ctermfg = 0,      bg = x.c6,   fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-default',    {ctermbg = 0,      ctermfg = 7,      bg = x.c0,        fg = x.c7})
+vim.api.nvim_set_hl(0, 'nofrils-main',       {ctermbg = 'NONE', ctermfg = 7,      bg = 'NONE',      fg = x.c7})
+vim.api.nvim_set_hl(0, 'nofrils-main-bg',    {ctermbg = 7,      ctermfg = 0,      bg = x.c7,        fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-shadow',     {ctermbg = 'NONE', ctermfg = 4,      bg = 'NONE',      fg = x.white_alt})
+vim.api.nvim_set_hl(0, 'nofrils-shadow-bg',  {ctermbg = 4,      ctermfg = 0,      bg = x.white_alt, fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-highlight',  {ctermbg = 7,      ctermfg = 0,      bg = x.black_alt, fg = 'NONE'})
+vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 'NONE', ctermfg = 1,      bg = 'NONE',      fg = x.c1})
+vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 'NONE', ctermfg = 2,      bg = 'NONE',      fg = x.c2})
+vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 'NONE', ctermfg = 3,      bg = 'NONE',      fg = x.c3})
+vim.api.nvim_set_hl(0, 'nofrils-blue',       {ctermbg = 'NONE', ctermfg = 4,      bg = 'NONE',      fg = x.c4})
+vim.api.nvim_set_hl(0, 'nofrils-magenta',    {ctermbg = 'NONE', ctermfg = 5,      bg = 'NONE',      fg = x.c5})
+vim.api.nvim_set_hl(0, 'nofrils-cyan',       {ctermbg = 'NONE', ctermfg = 6,      bg = 'NONE',      fg = x.c6})
+vim.api.nvim_set_hl(0, 'nofrils-red-bg',     {ctermbg = 1,      ctermfg = 0,      bg = x.c1,        fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-green-bg',   {ctermbg = 2,      ctermfg = 0,      bg = x.c2,        fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3,      ctermfg = 0,      bg = x.c3,        fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4,      ctermfg = 0,      bg = x.c4,        fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5,      ctermfg = 0,      bg = x.c5,        fg = x.c0})
+vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6,      ctermfg = 0,      bg = x.c6,        fg = x.c0})
 
 --  clear (:h highlight-groups) (without Normal) {{{
 vim.api.nvim_set_hl(0, 'ColorColumn',    {})
