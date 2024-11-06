@@ -297,7 +297,7 @@ vim.api.nvim_set_hl(0, 'MatchParen',   {link = 'nofrils-shadow-bg'})
 -- }}}
 
 --  set   (:h group-name) {{{
-vim.api.nvim_set_hl(0, 'Comment', {link = 'nofrils-shadow'})
+vim.api.nvim_set_hl(0, 'Comment', {link = 'nofrils-blue'})
 vim.api.nvim_set_hl(0, 'Error',   {link = 'nofrils-red-bg'})
 vim.api.nvim_set_hl(0, 'Added',   {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'Changed', {link = 'nofrils-yellow'})
@@ -305,7 +305,7 @@ vim.api.nvim_set_hl(0, 'Removed', {link = 'nofrils-red'})
 -- }}}
 
 --  set   (:h treesitter-highlight-groups) {{{
-vim.api.nvim_set_hl(0, '@comment',          {link = 'nofrils-shadow'})
+vim.api.nvim_set_hl(0, '@comment',          {link = 'nofrils-blue'})
 vim.api.nvim_set_hl(0, '@diff.delta',       {link = 'nofrils-yellow'})
 vim.api.nvim_set_hl(0, '@diff.minus',       {link = 'nofrils-red'})
 vim.api.nvim_set_hl(0, '@diff.plus',        {link = 'nofrils-green'})
@@ -330,12 +330,6 @@ function nofrils()
 	vim.cmd('colorscheme nofrils')
 end
 vim.api.nvim_create_user_command('Nofrils', nofrils, {})
-
-function nofrils_focus_comment()
-	vim.api.nvim_set_hl(0, 'Normal',  {ctermbg = 0, ctermfg = 7})
-	vim.api.nvim_set_hl(0, 'Comment', {ctermbg = 0, ctermfg = 15})
-end
-vim.api.nvim_create_user_command('NofrilsFocusComment', nofrils_focus_comment, {})
 
 function nofrils_presentation()
 	vim.opt.number = false
