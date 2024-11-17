@@ -43,6 +43,7 @@ M.path_xresources = os.getenv("HOME") .. '/.Xresources'
 
 M.update_cache = function()
 	if vim.fn.getftime(M.path_cache) < vim.fn.getftime(M.path_xresources)
+	-- if the file name can't be found, getftime will return -1, which is desired here
 	then
 		local color_def = {}
 

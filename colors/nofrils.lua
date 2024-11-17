@@ -150,8 +150,7 @@ require("nofrils/keymap")
 
 -- comment with --[=[ and --]=]
 
--- require("nofrils/whitespace1")
-require("nofrils/whitespace2")
+require("nofrils/whitespace")
 
 -- test regexp
 --[=[
