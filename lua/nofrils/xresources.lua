@@ -37,14 +37,44 @@ H.color_name = {
 
 local M = {}
 
-M.path_cache = vim.fn.stdpath('cache') .. '/xresources.lua'
-
 M.path_xresources = os.getenv("HOME") .. '/.Xresources'
 
+M.path_cache = vim.fn.stdpath('cache') .. '/xresources.lua'
+
+M.path_cache_md5 = vim.fn.stdpath('cache') .. '/xresources.md5'
+
 M.update_cache = function()
-	if vim.fn.getftime(M.path_cache) < vim.fn.getftime(M.path_xresources)
-	-- if the file name can't be found, getftime will return -1, which is desired here
+	local systemobj_md5sum = vim.system({"md5sum", M.path_xresources})
+	local stdout_md5sum = systemobj_md5sum:wait().stdout
+
+	local systemobj_cut = vim.system({"cut", "-d", " ", "-f", "1"}, {stdin = true})
+	systemobj_cut:write(stdout_md5sum)
+	systemobj_cut:write(nil)
+	local stdout_cut = systemobj_cut:wait().stdout
+
+	local md5 = stdout_cut
+
+
+
+	local file_cache_md5 = io.open(M.path_cache_md5, "r")
+	local md5_cache
+	if file_cache_md5 then
+		md5_cache = file_cache_md5:read("*a")
+		file_cache_md5:close()
+	end
+
+
+
+	if md5_cache ~= md5
 	then
+		local file_cache_md5 = io.open(M.path_cache_md5, "w")
+		if file_cache_md5 then
+			file_cache_md5:write(md5)
+			file_cache_md5:close()
+		end
+
+
+
 		local color_def = {}
 
 		for _, c in ipairs(H.color_name)
