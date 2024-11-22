@@ -57,9 +57,9 @@ M.create_autocommands = function()
 
 	au({'WinLeave', 'BufLeave'}, '*', M.unhighlight)
 
-	au('ModeChanged', '*:i', M.highlight)
+	au('InsertEnter', '*', function() M.highlight({insert = true}) end)
 
-	au('ModeChanged', 'i:*', M.highlight)
+	au('InsertLeave', '*', M.highlight)
 
 	if H.get_config().only_in_normal_buffers then
 		au('OptionSet', 'buftype',
@@ -88,7 +88,7 @@ M.unhighlight = function()
 	-- use `pcall` because there is an error if match id is not present
 end
 
-M.highlight = function()
+M.highlight = function(config)
 	M.unhighlight()
 
 	if vim.b.nofrils_sp_enable then
@@ -104,10 +104,10 @@ M.highlight = function()
 	end
 
 	if vim.b.nofrils_trail_enable then
-		if vim.api.nvim_get_mode().mode ~= "i" then
-			vim.b.nofrils_trail = vim.fn.matchadd('nofrils-trail', [[\s\+$]], 4)
-		else
+		if config and config.insert then
 			vim.b.nofrils_trail = vim.fn.matchadd('nofrils-trail', [[\s\+\%#\@<!$]], 4)
+		else
+			vim.b.nofrils_trail = vim.fn.matchadd('nofrils-trail', [[\s\+$]], 4)
 		end
 	end
 end
