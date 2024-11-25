@@ -29,8 +29,22 @@ H.color_name = {
 	'color14',
 	'color15',
 
-	'color_black_alt',
-	'color_white_alt',
+	'color_custom0',
+	'color_custom1',
+	'color_custom2',
+	'color_custom3',
+	'color_custom4',
+	'color_custom5',
+	'color_custom6',
+	'color_custom7',
+	'color_custom8',
+	'color_custom9',
+	'color_custom10',
+	'color_custom11',
+	'color_custom12',
+	'color_custom13',
+	'color_custom14',
+	'color_custom15',
 }
 
 
