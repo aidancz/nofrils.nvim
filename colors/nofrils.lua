@@ -1,6 +1,7 @@
 -- # option
 
 vim.opt.background = 'dark'
+-- vim.opt.termguicolors = false
 
 
 
@@ -10,6 +11,7 @@ local highlights = vim.api.nvim_get_hl(0, {})
 for name, _ in pairs(highlights) do
 	vim.api.nvim_set_hl(0, name, {})
 end
+-- https://www.reddit.com/r/neovim/comments/144bkmu/set_all_highlight_groups_to_the_same_color/
 
 
 
@@ -23,24 +25,27 @@ local x = require("nofrils/xresources")
 vim.api.nvim_set_hl(0, 'Normal', {ctermbg = 0, ctermfg = 7, bg = x.color0, fg = x.color7})
 -- cterm	color terminal
 
-vim.api.nvim_set_hl(0, 'nofrils-black',      {ctermbg = 0, ctermfg = 0, bg = x.color0, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 0, ctermfg = 1, bg = x.color0, fg = x.color1})
-vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 0, ctermfg = 2, bg = x.color0, fg = x.color2})
-vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 0, ctermfg = 3, bg = x.color0, fg = x.color3})
-vim.api.nvim_set_hl(0, 'nofrils-blue',       {ctermbg = 0, ctermfg = 4, bg = x.color0, fg = x.color4})
-vim.api.nvim_set_hl(0, 'nofrils-magenta',    {ctermbg = 0, ctermfg = 5, bg = x.color0, fg = x.color5})
-vim.api.nvim_set_hl(0, 'nofrils-cyan',       {ctermbg = 0, ctermfg = 6, bg = x.color0, fg = x.color6})
-vim.api.nvim_set_hl(0, 'nofrils-white',      {ctermbg = 0, ctermfg = 7, bg = x.color0, fg = x.color7})
-vim.api.nvim_set_hl(0, 'nofrils-black-bg',   {ctermbg = 0, ctermfg = 0, bg = x.color0, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-red-bg',     {ctermbg = 1, ctermfg = 0, bg = x.color1, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-green-bg',   {ctermbg = 2, ctermfg = 0, bg = x.color2, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3, ctermfg = 0, bg = x.color3, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4, ctermfg = 0, bg = x.color4, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5, ctermfg = 0, bg = x.color5, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6, ctermfg = 0, bg = x.color6, fg = x.color0})
-vim.api.nvim_set_hl(0, 'nofrils-white-bg',   {ctermbg = 7, ctermfg = 0, bg = x.color7, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-black',      {ctermbg = 'NONE', ctermfg = 0, bg = 'NONE',   fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-red',        {ctermbg = 'NONE', ctermfg = 1, bg = 'NONE',   fg = x.color1})
+vim.api.nvim_set_hl(0, 'nofrils-green',      {ctermbg = 'NONE', ctermfg = 2, bg = 'NONE',   fg = x.color2})
+vim.api.nvim_set_hl(0, 'nofrils-yellow',     {ctermbg = 'NONE', ctermfg = 3, bg = 'NONE',   fg = x.color3})
+vim.api.nvim_set_hl(0, 'nofrils-blue',       {ctermbg = 'NONE', ctermfg = 4, bg = 'NONE',   fg = x.color4})
+vim.api.nvim_set_hl(0, 'nofrils-magenta',    {ctermbg = 'NONE', ctermfg = 5, bg = 'NONE',   fg = x.color5})
+vim.api.nvim_set_hl(0, 'nofrils-cyan',       {ctermbg = 'NONE', ctermfg = 6, bg = 'NONE',   fg = x.color6})
+vim.api.nvim_set_hl(0, 'nofrils-white',      {ctermbg = 'NONE', ctermfg = 7, bg = 'NONE',   fg = x.color7})
+vim.api.nvim_set_hl(0, 'nofrils-black-bg',   {ctermbg = 'NONE', ctermfg = 0, bg = 'NONE',   fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-red-bg',     {ctermbg = 1,      ctermfg = 0, bg = x.color1, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-green-bg',   {ctermbg = 2,      ctermfg = 0, bg = x.color2, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-yellow-bg',  {ctermbg = 3,      ctermfg = 0, bg = x.color3, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-blue-bg',    {ctermbg = 4,      ctermfg = 0, bg = x.color4, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-magenta-bg', {ctermbg = 5,      ctermfg = 0, bg = x.color5, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-cyan-bg',    {ctermbg = 6,      ctermfg = 0, bg = x.color6, fg = x.color0})
+vim.api.nvim_set_hl(0, 'nofrils-white-bg',   {ctermbg = 7,      ctermfg = 0, bg = x.color7, fg = x.color0})
 
-vim.api.nvim_set_hl(0, 'nofrils-reverse',    {reverse = true})
+-- vim.api.nvim_set_hl(0, 'nofrils-gray',    {ctermbg = 0,   ctermfg = 244, bg = '#808080', fg = '#808080'})
+-- vim.api.nvim_set_hl(0, 'nofrils-gray-bg', {ctermbg = 244, ctermfg = 0,   bg = '#808080', fg = '#808080'})
+
+vim.api.nvim_set_hl(0, 'nofrils-reverse', {reverse = true})
 
 
 
@@ -53,10 +58,10 @@ vim.api.nvim_set_hl(0, 'NonText',      {link = 'nofrils-yellow'})
 
 vim.api.nvim_set_hl(0, 'Cursor',       {link = 'nofrils-white-bg'})
 vim.api.nvim_set_hl(0, 'TermCursor',   {link = 'nofrils-white-bg'})
-vim.api.nvim_set_hl(0, 'Visual',       {link = 'nofrils-green-bg'})
-vim.api.nvim_set_hl(0, 'CursorLine',   {link = 'nofrils-green-bg'})
-vim.api.nvim_set_hl(0, 'CursorColumn', {link = 'nofrils-green-bg'})
-vim.api.nvim_set_hl(0, 'MatchParen',   {link = 'nofrils-green-bg'})
+vim.api.nvim_set_hl(0, 'Visual',       {link = 'nofrils-blue-bg'})
+vim.api.nvim_set_hl(0, 'CursorLine',   {link = 'nofrils-blue-bg'})
+vim.api.nvim_set_hl(0, 'CursorColumn', {link = 'nofrils-blue-bg'})
+vim.api.nvim_set_hl(0, 'MatchParen',   {link = 'nofrils-blue-bg'})
 
 vim.api.nvim_set_hl(0, 'DiffAdd',      {link = 'nofrils-green'})
 vim.api.nvim_set_hl(0, 'DiffChange',   {link = 'nofrils-yellow'})
