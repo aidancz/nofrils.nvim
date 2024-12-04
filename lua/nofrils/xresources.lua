@@ -47,11 +47,11 @@ H.color_name = {
 	'color_custom15',
 }
 
-
+----------------------------------------------------------------
 
 local M = {}
 
-M.path_xresources = os.getenv("HOME") .. '/.Xresources'
+M.path_xresources = Nofrils.config.path_xresources
 
 M.path_cache = vim.fn.stdpath('cache') .. '/xresources.lua'
 
@@ -104,7 +104,7 @@ M.update_cache = function()
 	end
 end
 
-
+----------------------------------------------------------------
 
 M.update_cache()
 return dofile(M.path_cache)
