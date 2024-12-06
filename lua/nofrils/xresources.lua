@@ -51,11 +51,15 @@ H.color_name = {
 
 local M = {}
 
-M.path_xresources = Nofrils.config.path_xresources
+M.setup = function(config)
+	M.path_xresources = config.path_xresources
+	M.path_cache = vim.fn.stdpath('cache') .. '/xresources.lua'
+	M.path_cache_md5 = vim.fn.stdpath('cache') .. '/xresources.md5'
 
-M.path_cache = vim.fn.stdpath('cache') .. '/xresources.lua'
+	M.update_cache()
 
-M.path_cache_md5 = vim.fn.stdpath('cache') .. '/xresources.md5'
+	return dofile(M.path_cache)
+end
 
 M.update_cache = function()
 	local systemobj_md5sum = vim.system({"md5sum", M.path_xresources})
@@ -106,5 +110,4 @@ end
 
 ----------------------------------------------------------------
 
-M.update_cache()
-return dofile(M.path_cache)
+return M

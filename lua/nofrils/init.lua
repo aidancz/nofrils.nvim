@@ -1,18 +1,18 @@
-Nofrils = {}
+M = {}
 
-Nofrils.config = {
+M.config = {
 	path_xresources = os.getenv('HOME') .. '/.Xresources',
 	main = function()
-		Nofrils.clear({".*"})
+		require('nofrils').clear({'.*'})
 	end,
 }
 
-Nofrils.setup = function(config)
-	Nofrils.config = vim.tbl_deep_extend('force', Nofrils.config, config or {})
+M.setup = function(config)
+	M.config = vim.tbl_deep_extend('force', M.config, config or {})
 end
 
-Nofrils.clear = require("nofrils/clear")
+M.clear = require('nofrils/clear').setup()
 
-Nofrils.get_xresources = function() return require("nofrils/xresources") end
+M.get_xresources = function() return require('nofrils/xresources').setup(M.config) end
 
-return Nofrils
+return M

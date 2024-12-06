@@ -1,1 +1,1 @@
-Nofrils.config.main()
+require('nofrils').config.main()
