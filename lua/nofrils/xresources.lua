@@ -4,47 +4,47 @@
 local H = {}
 
 H.get_xresources_color = function(c)
-	local command = io.popen('xrdb -query | grep ' .. c .. ' -m 1 | cut -f 2')
+	local command = io.popen("xrdb -query | grep " .. c .. " -m 1 | cut -f 2")
 	local color = command:read("*l")
 	return color
 end
 
 H.color_name = {
-	'foreground',
-	'background',
-	'color0',
-	'color1',
-	'color2',
-	'color3',
-	'color4',
-	'color5',
-	'color6',
-	'color7',
-	'color8',
-	'color9',
-	'color10',
-	'color11',
-	'color12',
-	'color13',
-	'color14',
-	'color15',
+	"foreground",
+	"background",
+	"color0",
+	"color1",
+	"color2",
+	"color3",
+	"color4",
+	"color5",
+	"color6",
+	"color7",
+	"color8",
+	"color9",
+	"color10",
+	"color11",
+	"color12",
+	"color13",
+	"color14",
+	"color15",
 
-	'color_custom0',
-	'color_custom1',
-	'color_custom2',
-	'color_custom3',
-	'color_custom4',
-	'color_custom5',
-	'color_custom6',
-	'color_custom7',
-	'color_custom8',
-	'color_custom9',
-	'color_custom10',
-	'color_custom11',
-	'color_custom12',
-	'color_custom13',
-	'color_custom14',
-	'color_custom15',
+	"color_custom0",
+	"color_custom1",
+	"color_custom2",
+	"color_custom3",
+	"color_custom4",
+	"color_custom5",
+	"color_custom6",
+	"color_custom7",
+	"color_custom8",
+	"color_custom9",
+	"color_custom10",
+	"color_custom11",
+	"color_custom12",
+	"color_custom13",
+	"color_custom14",
+	"color_custom15",
 }
 
 ----------------------------------------------------------------
@@ -53,8 +53,8 @@ local M = {}
 
 M.setup = function(config)
 	M.path_xresources = config.path_xresources
-	M.path_cache = vim.fn.stdpath('cache') .. '/xresources.lua'
-	M.path_cache_md5 = vim.fn.stdpath('cache') .. '/xresources.md5'
+	M.path_cache = vim.fn.stdpath("cache") .. "/xresources.lua"
+	M.path_cache_md5 = vim.fn.stdpath("cache") .. "/xresources.md5"
 
 	M.update_cache()
 
