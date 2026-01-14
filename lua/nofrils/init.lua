@@ -1,10 +1,6 @@
 local M = {}
-local H = {}
 
 M.config = {
-	path_xresources = os.getenv("HOME") .. "/.Xresources",
-	path_cache = vim.fn.stdpath("cache") .. "/xresources.lua",
-	path_cache_md5 = vim.fn.stdpath("cache") .. "/xresources.md5",
 	main = function()
 		M.clear(".*")
 	end,
@@ -24,18 +20,25 @@ M.clear = function(pattern)
 end
 -- https://www.reddit.com/r/neovim/comments/144bkmu/set_all_highlight_groups_to_the_same_color/
 
-----------------------------------------------------------------
+-- # xrdb (x server resource database utility)
 
 -- https://github.com/nekonako/xresources-nvim/blob/master/lua/xresources.lua
 -- https://github.com/martineausimon/nvim-xresources/blob/main/lua/nvim-xresources/system.lua
 
-H.get_xresources_color = function(c)
-	local command = io.popen("xrdb -query | grep " .. c .. " -m 1 | cut -f 2")
-	local color = command:read("*l")
-	return color
+M.get_xrdb_query = function()
+	local str = io.popen("xrdb -query", "r"):read("*a")
+	local lis = vim.split(str, "\n", {trimempty = true})
+	local tbl = {}
+	for _, i in ipairs(lis) do
+		local kv = vim.split(i, ":\t")
+		local k = kv[1]
+		local v = kv[2]
+		tbl[k] = v
+	end
+	return tbl
 end
 
-H.color_name = {
+M.color = {
 	"foreground",
 	"background",
 	"color0",
@@ -56,60 +59,23 @@ H.color_name = {
 	"color15",
 }
 
-M.update_cache = function()
-
-	-- get md5
-
-	local systemobj_md5sum = vim.system({"md5sum", M.config.path_xresources})
-	local stdout_md5sum = systemobj_md5sum:wait().stdout
-
-	local systemobj_cut = vim.system({"cut", "-d", " ", "-f", "1"}, {stdin = true})
-	systemobj_cut:write(stdout_md5sum)
-	systemobj_cut:write(nil)
-	local stdout_cut = systemobj_cut:wait().stdout
-
-	local md5 = stdout_cut
-
-	-- get md5_cache
-
-	local file_cache_md5 = io.open(M.config.path_cache_md5, "r")
-	local md5_cache
-	if file_cache_md5 then
-		md5_cache = file_cache_md5:read("*a")
-		file_cache_md5:close()
-	end
-
-	-- compare md5_cache and md5, if not equal then update md5_cache and xresources_cache
-
-	if md5_cache ~= md5
-	then
-		local file_cache_md5 = io.open(M.config.path_cache_md5, "w")
-		if file_cache_md5 then
-			file_cache_md5:write(md5)
-			file_cache_md5:close()
-		end
-
-
-
-		local color_def = {}
-
-		for _, c in ipairs(H.color_name) do
-			color_def[c] = H.get_xresources_color(c)
-		end
-
-		local file_cache = io.open(M.config.path_cache, "w")
-		if file_cache then
-			file_cache:write("return\n" .. vim.inspect(color_def))
-			file_cache:close()
+M.tbl_find = function(t, pattern)
+	for k, v in pairs(t) do
+		if string.find(k, pattern) then
+			return v
 		end
 	end
+	return nil
 end
 
-M.get_xresources = function()
-	M.update_cache()
-	return dofile(M.config.path_cache)
+M.get_xrdb_color = function()
+	local xrdb_query = M.get_xrdb_query()
+	local xrdb_color = {}
+	for _, color in ipairs(M.color) do
+		local pattern = color .. "$"
+		xrdb_color[color] = M.tbl_find(xrdb_query, pattern)
+	end
+	return xrdb_color
 end
-
-----------------------------------------------------------------
 
 return M
