@@ -39,8 +39,6 @@ M.get_xrdb_query = function()
 end
 
 M.color = {
-	"foreground",
-	"background",
 	"color0",
 	"color1",
 	"color2",
