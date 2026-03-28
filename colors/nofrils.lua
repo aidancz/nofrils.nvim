@@ -1,1 +1,0 @@
-require("nofrils").config.main()

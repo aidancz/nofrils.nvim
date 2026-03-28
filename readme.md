@@ -260,7 +260,7 @@ using `link`, a theme can be changed dynamically<br>
 for example, setting `nofrils_blue_bg` to solarized blue makes the theme solarized, using gruvbox blue makes it gruvbox
 
 > [!CAUTION]
-> you cannot use `link` for `Normal` highlight group
+> you cannot define `Normal` highlight group using `link`
 
 # the full nofrils colorscheme
 
@@ -274,8 +274,9 @@ vim.o.termguicolors = false
 for name, _ in pairs(vim.api.nvim_get_hl(0, {})) do
 	vim.api.nvim_set_hl(0, name, {})
 end
+-- https://www.reddit.com/r/neovim/comments/144bkmu/set_all_highlight_groups_to_the_same_color/
 
--- # prevent `vim.api.nvim_set_hl` from modifying highlight groups, use `_G.nvim_set_hl` instead
+-- # prevent `vim.api.nvim_set_hl` from modifying highlight groups, from now on, use `_G.nvim_set_hl` instead
 
 if _G.nvim_set_hl == nil then
 	_G.nvim_set_hl = vim.api.nvim_set_hl
@@ -451,7 +452,7 @@ require("nofrils")
 
 in `~/.config/nvim_nofrils/lua/nofrils.lua`:
 
-```lua
+```
 <everything else goes here>
 ```
 
@@ -468,7 +469,7 @@ vim.cmd("colorscheme nofrils")
 
 in `~/.config/nvim_nofrils/colors/nofrils.lua`
 
-```lua
+```
 <everything else goes here>
 ```
 
